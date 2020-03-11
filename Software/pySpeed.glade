@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkListStore" id="GtkListStore_history">
+    <columns>
+      <!-- column-name date -->
+      <column type="gchararray"/>
+      <!-- column-name speed -->
+      <column type="gchararray"/>
+      <!-- column-name loco -->
+      <column type="gchararray"/>
+    </columns>
+    <signal name="row-changed" handler="history_changed" swapped="no"/>
+    <signal name="row-deleted" handler="history_changed" swapped="no"/>
+    <signal name="row-inserted" handler="history_changed" swapped="no"/>
+    <signal name="rows-reordered" handler="history_changed" swapped="no"/>
+  </object>
+  <object class="GtkListStore" id="GtkListStore_ports">
+    <columns>
+      <!-- column-name port -->
+      <column type="gchararray"/>
+      <!-- column-name device -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="GtkListStore_scales">
+    <columns>
+      <!-- column-name gauge -->
+      <column type="gchararray"/>
+      <!-- column-name scale -->
+      <column type="gchararray"/>
+      <!-- column-name factor -->
+      <column type="gfloat"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">0</col>
+        <col id="1" translatable="yes">1:45</col>
+        <col id="2">45</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">00</col>
+        <col id="1" translatable="yes">1:76</col>
+        <col id="2">76</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">1</col>
+        <col id="1" translatable="yes">1:32</col>
+        <col id="2">32</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">2</col>
+        <col id="1" translatable="yes">1:22,5</col>
+        <col id="2">22.5</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">H0</col>
+        <col id="1" translatable="yes">1:87</col>
+        <col id="2">87</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">N</col>
+        <col id="1" translatable="yes">1:160</col>
+        <col id="2">160</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">S</col>
+        <col id="1" translatable="yes">1:64</col>
+        <col id="2">64</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">T</col>
+        <col id="1" translatable="yes">1:450</col>
+        <col id="2">450</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">T</col>
+        <col id="1" translatable="yes">1:480</col>
+        <col id="2">480</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TT</col>
+        <col id="1" translatable="yes">1:120</col>
+        <col id="2">120</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Z</col>
+        <col id="1" translatable="yes">1:220</col>
+        <col id="2">220</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">ZZ</col>
+        <col id="1" translatable="yes">1:300</col>
+        <col id="2">300</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkAboutDialog">
+    <property name="can_focus">False</property>
+    <property name="type_hint">dialog</property>
+    <property name="program_name">pySpeed</property>
+    <property name="version">1.0.6</property>
+    <property name="copyright" translatable="yes">hier muss ein rießiger text hin ;-)
+vor allem viele Copyright mit vielen eingekringelten C</property>
+    <property name="comments" translatable="yes">pySpeed ist ein Tool zur Anzeige und Steuerung einer Modellbahn-Messanlage</property>
+    <property name="website_label" translatable="yes">Webseite</property>
+    <property name="license" translatable="yes">ich bin ein sinnloser lizenztext</property>
+    <property name="authors">fghdfhfdh</property>
+    <property name="documenters">fhjrthfcvbhf</property>
+    <property name="translator_credits" translatable="yes">dfhfgh</property>
+    <property name="artists">Icons von iconfinder
+pixabay
+u.a.</property>
+    <property name="logo">gauge.svg</property>
+    <property name="license_type">custom</property>
+    <child>
+      <placeholder/>
+    </child>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkAdjustment" id="adjustment_distance">
+    <property name="upper">1000</property>
+    <property name="value">100</property>
+    <property name="step_increment">0.10000000000000001</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment_sensitivity">
+    <property name="upper">1000</property>
+    <property name="value">150</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkWindow" id="GtkWindow_window">
+    <property name="width_request">530</property>
+    <property name="height_request">410</property>
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Geschwindigkeitsmessanlage</property>
+    <property name="resizable">False</property>
+    <property name="icon">speed.png</property>
+    <property name="has_resize_grip">True</property>
+    <signal name="destroy" handler="on_destroy" swapped="no"/>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkNotebook">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="tab_pos">left</property>
+            <child>
+              <object class="GtkLayout">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Tachograph&lt;/b&gt;</property>
+                    <property name="use_markup">True</property>
+                  </object>
+                  <packing>
+                    <property name="x">10</property>
+                    <property name="y">10</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkImage">
+                    <property name="width_request">100</property>
+                    <property name="height_request">80</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="pixbuf">HD44780_clear.png</property>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">70</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="GtkLabel_display">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Messung:
+Bereit</property>
+                    <attributes>
+                      <attribute name="font-desc" value="HD44780 22"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="x">63</property>
+                    <property name="y">125</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+            <child type="tab">
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="pixbuf">gauge.svg</property>
+                <property name="icon_size">6</property>
+              </object>
+              <packing>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLayout">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Verlauf&lt;/b&gt;</property>
+                    <property name="use_markup">True</property>
+                  </object>
+                  <packing>
+                    <property name="x">10</property>
+                    <property name="y">10</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="width_request">430</property>
+                    <property name="height_request">330</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <object class="GtkTreeView" id="GtkTreeView_history">
+                        <property name="width_request">433</property>
+                        <property name="height_request">330</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="model">GtkListStore_history</property>
+                        <property name="enable_search">False</property>
+                        <property name="search_column">0</property>
+                        <property name="show_expanders">False</property>
+                        <property name="enable_grid_lines">both</property>
+                        <child internal-child="selection">
+                          <object class="GtkTreeSelection"/>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="sizing">fixed</property>
+                            <property name="title" translatable="yes">Datum</property>
+                            <child>
+                              <object class="GtkCellRendererText"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="sizing">fixed</property>
+                            <property name="title" translatable="yes">Geschwindigkeit</property>
+                            <child>
+                              <object class="GtkCellRendererText"/>
+                              <attributes>
+                                <attribute name="text">1</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="sizing">fixed</property>
+                            <property name="title" translatable="yes">Lokomotive</property>
+                            <child>
+                              <object class="GtkCellRendererText">
+                                <property name="editable">True</property>
+                                <signal name="edited" handler="loco_changed" swapped="no"/>
+                              </object>
+                              <attributes>
+                                <attribute name="text">2</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">45</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">applications-office</property>
+                <property name="icon_size">6</property>
+              </object>
+              <packing>
+                <property name="position">1</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLayout">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Eintellungen&lt;/b&gt;</property>
+                    <property name="use_markup">True</property>
+                  </object>
+                  <packing>
+                    <property name="x">10</property>
+                    <property name="y">10</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Anschluss:</property>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">50</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Abstand:</property>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">230</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Maßstab:</property>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">270</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinButton" id="GtkSpinButton_distance">
+                    <property name="width_request">300</property>
+                    <property name="visible">True</property>
+                    <property name="sensitive">False</property>
+                    <property name="can_focus">True</property>
+                    <property name="input_purpose">number</property>
+                    <property name="adjustment">adjustment_distance</property>
+                    <property name="climb_rate">0.10000000000000001</property>
+                    <property name="digits">1</property>
+                    <property name="numeric">True</property>
+                    <property name="update_policy">if-valid</property>
+                    <property name="value">100</property>
+                  </object>
+                  <packing>
+                    <property name="x">100</property>
+                    <property name="y">225</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="always_show_image">True</property>
+                    <signal name="clicked" handler="on_ports_reload" swapped="no"/>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="stock">gtk-refresh</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">410</property>
+                    <property name="y">45</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="GtkButton_arduino_save">
+                    <property name="label">gtk-save</property>
+                    <property name="visible">True</property>
+                    <property name="sensitive">False</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="use_stock">True</property>
+                    <signal name="clicked" handler="on_arduino_save" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">350</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Archiv:</property>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">90</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="GtkButton_distance">
+                    <property name="visible">True</property>
+                    <property name="sensitive">False</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <signal name="clicked" handler="on_arduino_reload" swapped="no"/>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="stock">gtk-refresh</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">410</property>
+                    <property name="y">225</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="GtkButton_scale">
+                    <property name="visible">True</property>
+                    <property name="sensitive">False</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <signal name="clicked" handler="on_arduino_reload" swapped="no"/>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="stock">gtk-refresh</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">410</property>
+                    <property name="y">265</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <signal name="clicked" handler="on_GtkButton_file_clicked" swapped="no"/>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="stock">gtk-open</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">410</property>
+                    <property name="y">85</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="GtkEntry_file">
+                    <property name="width_request">300</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="secondary_icon_stock">gtk-clear</property>
+                    <signal name="icon-press" handler="on_GtkEntry_icon" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">100</property>
+                    <property name="y">85</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="GtkComboBox_scales">
+                    <property name="width_request">300</property>
+                    <property name="visible">True</property>
+                    <property name="sensitive">False</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">GtkListStore_scales</property>
+                    <property name="entry_text_column">0</property>
+                    <property name="id_column">2</property>
+                    <child>
+                      <object class="GtkCellRendererText"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererText"/>
+                      <attributes>
+                        <attribute name="text">1</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">100</property>
+                    <property name="y">265</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="GtkComboBox_ports">
+                    <property name="width_request">300</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="model">GtkListStore_ports</property>
+                    <property name="entry_text_column">0</property>
+                    <property name="id_column">0</property>
+                    <child>
+                      <object class="GtkCellRendererText"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                    <child>
+                      <object class="GtkCellRendererText"/>
+                      <attributes>
+                        <attribute name="text">1</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">100</property>
+                    <property name="y">45</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="GtkButton_arduino_reset">
+                    <property name="label">gtk-revert-to-saved</property>
+                    <property name="visible">True</property>
+                    <property name="sensitive">False</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="use_stock">True</property>
+                    <signal name="clicked" handler="on_arduino_reset" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">130</property>
+                    <property name="y">350</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label">gtk-connect</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="use_stock">True</property>
+                    <signal name="clicked" handler="on_connect" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">165</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label">gtk-disconnect</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="use_stock">True</property>
+                    <signal name="clicked" handler="on_disconnect" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">130</property>
+                    <property name="y">165</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label">gtk-save</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="use_stock">True</property>
+                    <signal name="clicked" handler="on_settings_save" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">125</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label">gtk-revert-to-saved</property>
+                    <property name="height_request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="use_stock">True</property>
+                    <signal name="clicked" handler="on_settings_reset" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">130</property>
+                    <property name="y">125</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSeparator">
+                    <property name="width_request">1920</property>
+                    <property name="height_request">1</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="y">210</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="GtkButton_sensitivity">
+                    <property name="visible">True</property>
+                    <property name="sensitive">False</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <signal name="clicked" handler="on_arduino_reload" swapped="no"/>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="stock">gtk-refresh</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">410</property>
+                    <property name="y">305</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Empfindlichkeit:</property>
+                  </object>
+                  <packing>
+                    <property name="x">20</property>
+                    <property name="y">310</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinButton" id="GtkSpinButton_sensitivity">
+                    <property name="width_request">200</property>
+                    <property name="visible">True</property>
+                    <property name="sensitive">False</property>
+                    <property name="can_focus">True</property>
+                    <property name="progress_pulse_step">1</property>
+                    <property name="input_purpose">number</property>
+                    <property name="adjustment">adjustment_sensitivity</property>
+                    <property name="climb_rate">1</property>
+                    <property name="numeric">True</property>
+                    <property name="update_policy">if-valid</property>
+                  </object>
+                  <packing>
+                    <property name="x">200</property>
+                    <property name="y">305</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-properties</property>
+                <property name="icon_size">6</property>
+              </object>
+              <packing>
+                <property name="position">2</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLayout">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Informationen&lt;/b&gt;</property>
+                    <property name="use_markup">True</property>
+                  </object>
+                  <packing>
+                    <property name="x">10</property>
+                    <property name="y">10</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkImage">
+                    <property name="width_request">100</property>
+                    <property name="height_request">80</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="pixbuf">gauge.svg</property>
+                  </object>
+                  <packing>
+                    <property name="x">185</property>
+                    <property name="y">30</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="width_request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">&lt;b&gt;pySpeed&lt;/b&gt;
+
+1.0.6
+
+pySpeed ist ein Tool zur Anzeige und Steuerung einer
+Modellbahn-Messanlage
+
+
+
+© Christian Lösel
+
+besonderer Dank gilt Dominik Bugschat
+(&lt;a href="https://www.lokschuppen-dominik.de/"&gt;Lokschuppen Dominik&lt;/a&gt;)
+für das ursprüngliche Arduino-Script.</property>
+                    <property name="use_markup">True</property>
+                    <property name="justify">center</property>
+                  </object>
+                  <packing>
+                    <property name="x">60</property>
+                    <property name="y">105</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-about</property>
+                <property name="icon_size">6</property>
+              </object>
+              <packing>
+                <property name="position">3</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Status: </property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="GtkLabel_connection">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">label</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkFileFilter" id="filefilter1">
+    <patterns>
+      <pattern>*.dat</pattern>
+    </patterns>
+  </object>
+</interface>
